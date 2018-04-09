@@ -35,10 +35,9 @@ def _get_client():
     version = __grains__['version']
     return client.Client(host, version, username, password, port, protocol)
 
-def create(host, name, status):
+def create(**kwargs):
     try:
         client = _get_client()
-        import pdb; pdb.set_trace()
         changes = client.slb.server.create(name, host, status)
         ret['result'] = True
         ret['changes'] = changes
